@@ -60,7 +60,7 @@ uses
   LCLProc, Menus, Dialogs, ExtDlgs, StdCtrls, Buttons, SynEditHighlighter,
   Grids, ActnList, viewercontrol, GifAnim, fFindView, WLXPlugin, uWLXModule,
   uFileSource, fModView, Types, uThumbnails, uFormCommands, uOSForms,Clipbrd,
-  uExifReader, KASStatusBar, SynEdit, uShowForm, uRegExpr, uRegExprU,
+  uExifReader, KASStatusBar, uShowForm, uRegExpr,
   Messages, fEditSearch, uMasks, uSearchTemplate;
 
 type
@@ -2993,9 +2993,7 @@ begin
       FFindDialog.cbRegExp.Visible:= (not bPlugin) and
                                      (ViewerControl.FileSize < High(IntPtr)) and
                                      (
-                                       (ViewerControl.Encoding = veUtf16le) or
-                                       (not (ViewerControl.Encoding in ViewerEncodingMultiByte)) or
-                                       (TRegExprU.Available and (ViewerControl.Encoding in [veUtf8, veUtf8bom]))
+                                       (not (ViewerControl.Encoding in ViewerEncodingMultiByte))
                                      );
       if not FFindDialog.cbRegExp.Visible then FFindDialog.cbRegExp.Checked:= False;
       if FFindDialog.cbRegExp.Checked then bSearchBackwards:= False;
