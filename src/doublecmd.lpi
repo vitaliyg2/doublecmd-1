@@ -2031,6 +2031,9 @@ end;"/>
       </Debugging>
     </Linking>
     <Other>
+      <CompilerMessages>
+        <IgnoredMessages idx6058="True" idx5024="True"/>
+      </CompilerMessages>
       <ExecuteBefore>
         <Command Value="$(ProjPath)\platform\git2revisioninc$(ExeExt).cmd $MakeFile($(ProjOutDir))"/>
         <CompileReasons Run="False"/>
