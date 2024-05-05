@@ -3311,35 +3311,35 @@ begin
     mi := TMenuItem.Create(pmDirHistory);
     pmDirHistory.Items.Add(mi);
 
-    mi.Caption := ActiveFrame.Path[FromFileSourceIndex, FromPathIndex].Replace('&','&&');
+    mi.Caption := ActiveFrame.Path[ToFileSourceIndex, ToPathIndex].Replace('&','&&');
     mi.OnClick := @ViewHistorySelected;
     // Remember indexes into history.
-    mi.Tag := HistoryIndexesToTag(FromFileSourceIndex, FromPathIndex);
+    mi.Tag := HistoryIndexesToTag(ToFileSourceIndex, ToPathIndex);
     // Mark current history position.
-    if (FromFileSourceIndex = ActiveFrame.CurrentFileSourceIndex) and
-       (FromPathIndex = ActiveFrame.CurrentPathIndex) then
+    if (ToFileSourceIndex = ActiveFrame.CurrentFileSourceIndex) and
+       (ToPathIndex = ActiveFrame.CurrentPathIndex) then
       mi.Checked := True;
 
-    if not GoForward(FromFileSourceIndex, FromPathIndex) then
+    if not GoBack(ToFileSourceIndex, ToPathIndex) then
       Break;
 
     // Add separator and address of a file source as a caption.
-    if FromPathIndex = 0 then
+    if ToPathIndex = 0 then
     begin
       AddCaptionItem('-');
-      AddCaptionItem('- ' + ActiveFrame.FileSources[FromFileSourceIndex].CurrentAddress.Replace('&','&&') + ' -');
+      AddCaptionItem('- ' + ActiveFrame.FileSources[ToFileSourceIndex].CurrentAddress.Replace('&','&&') + ' -');
     end;
   end;
 
-  if (ToFileSourceIndex < ActiveFrame.FileSourcesCount - 1) or
-     (ToPathIndex < ActiveFrame.PathsCount[ToFileSourceIndex] - 1) then
-  begin
-    mi := TMenuItem.Create(pmDirHistory);
-    mi.Caption := '...';
-    mi.OnClick := @ViewHistoryNextSelected;
-    mi.Tag := HistoryIndexesToTag(ToFileSourceIndex, ToPathIndex);
-    pmDirHistory.Items.Add(mi);
-  end;
+  //if (ToFileSourceIndex < ActiveFrame.FileSourcesCount - 1) or
+  //   (ToPathIndex < ActiveFrame.PathsCount[ToFileSourceIndex] - 1) then
+  //begin
+  //  mi := TMenuItem.Create(pmDirHistory);
+  //  mi.Caption := '...';
+  //  mi.OnClick := @ViewHistoryNextSelected;
+  //  mi.Tag := HistoryIndexesToTag(ToFileSourceIndex, ToPathIndex);
+  //  pmDirHistory.Items.Add(mi);
+  //end;
 
   Application.ProcessMessages;
 
