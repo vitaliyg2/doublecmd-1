@@ -34,7 +34,7 @@ if "%1"=="darkwin" ( call :darkwin
 ) else (
 if "%1"=="debug" ( call :debug
 ) else (
-if "%1"=="" ( call :release
+if "%1"=="" ( call :doublecmd
 ) else (
   echo ERROR: Mode not defined: %1
   echo Available modes: components, plugins, doublecmd, release, darkwin, debug
